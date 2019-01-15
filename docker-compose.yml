@@ -6,9 +6,9 @@ services:
         container_name: my_nginx
         volumes:
             - ./nginx/my-app.com.conf:/etc/nginx/conf.d/my-app.com.conf
-            - ./logs/my-apps/nginx:/var/log/nginx/
+            - ./logs/myPHPs/nginx:/var/log/nginx/
             - ./nginx/ssl:/etc/nginx/ssl/
-            - ../my-app:/var/www/my-apps/my-app
+            - ../my-app:/var/www/myPHPs/my-app
         links:
             - my_php
         ports:
@@ -31,6 +31,6 @@ services:
                 - USER_NAME=${USER_NAME}
         container_name: my_php
         volumes:
-            - ../my-app:/var/www/my-apps/my-app
+            - ../my-app:/var/www/myPHPs/my-app
         links:
             - my_mysql

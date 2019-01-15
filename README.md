@@ -13,11 +13,11 @@ To boot up Docker for you app, just run from directory root:
 Then change your hosts file and add the following line:
 `127.0.0.1	my-app.com`
 
-In root, create directories **logs/my-apps/nginx** to preview nginx error and access logs if needed.
+In root, create directories **logs/myPHPs/nginx** to preview nginx error and access logs if needed.
 
 Create your own .env file in root of the project, based on .env.example, to use some features (Optional)
 
-!!! **IMPORTANT: Modify docker-compose.yml for adding your own PHP projects inside my-apps folder and add nginx domains based on your needs** !!!
+!!! **IMPORTANT: Modify docker-compose.yml for adding your own PHP projects inside myPHPs folder and add nginx domains based on your needs** !!!
 
 How-tos (navigate to this folder when executing):
 -------------------------------------------------
@@ -28,7 +28,7 @@ How-tos (navigate to this folder when executing):
 3. To SSH into the containers:
     - `docker exec -it my_php bash`
 4. To run some command:
-    - `docker exec my_php composer install --working-dir=/var/www/my-apps/`
+    - `docker exec my_php composer install --working-dir=/var/www/myPHPs/`
 
 
 Import databases:
