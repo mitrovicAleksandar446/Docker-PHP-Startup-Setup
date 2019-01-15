@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+    my_nginx:
+        build: ./nginx
+        container_name: my_nginx
+        volumes:
+            - ./nginx/my-app.com.conf:/etc/nginx/conf.d/my-app.com.conf
+            - ./logs/my-apps/nginx:/var/log/nginx/
+            - ./nginx/ssl:/etc/nginx/ssl/
+            - ../:/var/www/my-apps/my-app
+        links:
+            - my_php
+        ports:
+            - "80:80"
+
+    my_mysql:
+        build: ./mysql
+        container_name: my_mysql
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql/data/dumps/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./mysql/data/dumps:/dumps/
+
+    my_php:
+        build:
+            context: ./php
+            args:
+                - UID=${UID}
+                - USER_NAME=${USER_NAME}
+        container_name: my_php
+        volumes:
+            - ../:/var/www/my-apps/my-app
+        links:
+            - my_mysql
